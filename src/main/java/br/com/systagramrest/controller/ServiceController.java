@@ -93,8 +93,8 @@ public class ServiceController {
 	 * */
 	@GET
 	@Produces("application/json; charset=UTF-8")
-	@Path("/todasPessoas")
-	public List<Pessoa> TodasPessoas(){
+	@Path("/listaPessoas")
+	public List<Pessoa> listaPessoas(){
 		
 		List<Pessoa> pessoas =  new ArrayList<Pessoa>();
 		
