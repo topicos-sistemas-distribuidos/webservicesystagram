@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
@@ -15,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  *
  */
 @Entity
-public class Users extends AbstractModel<Long>{	
+@Table(name="Users")
+public class UsersEntity extends AbstractModel<Long>{	
 	private static final long serialVersionUID = 1L;
 	@Column(length=50)
 	private String username;
@@ -28,20 +30,20 @@ public class Users extends AbstractModel<Long>{
 	private String email;		
 	@JsonBackReference(value="user-person")
 	@OneToOne(cascade=CascadeType.ALL)
-	private Person person;
+	private PersonEntity person;
 	
-	public Users() {
+	public UsersEntity() {
 	}
 	
-	public Person getPerson() {
+	public PersonEntity getPerson() {
 		return person;
 	}
 
-	public void setPerson(Person person) {
+	public void setPerson(PersonEntity person) {
 		this.person = person;
 	}
 
-	public Users(String username, String password, String email) {
+	public UsersEntity(String username, String password, String email) {
 		super();
 		this.username = username;
 		this.password = password;

@@ -1,4 +1,4 @@
-package br.com.systagramrest.repository.entity;
+package br.com.systagramrest.http;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -9,26 +9,31 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
-public class Post extends AbstractModel<Long>{
+@XmlRootElement
+public class Post{
 	private static final long serialVersionUID = 1L;
 	private Date date;
 	private int likes=0;
-
-	@OneToOne(fetch = FetchType.LAZY)
 	private Person person;
-	
-	@OneToOne(fetch = FetchType.LAZY)
 	private Picture picture;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Comment> comments = new LinkedList<>();
 	
 	public Post() {
 	}
+	
+    private Long id;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	
 	public Person getPerson() {
 		return person;

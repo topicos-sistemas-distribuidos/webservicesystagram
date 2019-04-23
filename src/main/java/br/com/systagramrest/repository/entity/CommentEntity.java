@@ -7,25 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Comment extends AbstractModel<Long>{
+@Table(name="Comment")
+public class CommentEntity extends AbstractModel<Long>{
 	private static final long serialVersionUID = 1L;
 	private String description;
 	private Date date;
 
 	@JsonBackReference(value="comment-person")
 	@OneToOne(fetch = FetchType.LAZY)
-	private Person person;
+	private PersonEntity person;
 	
-	public Comment() {
+	public CommentEntity() {
 	}
-	public Person getPerson() {
+	public PersonEntity getPerson() {
 		return person;
 	}
-	public void setPerson(Person person) {
+	public void setPerson(PersonEntity person) {
 		this.person = person;
 	}
 	public String getDescription() {

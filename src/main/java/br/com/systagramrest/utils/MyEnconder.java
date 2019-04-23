@@ -3,11 +3,19 @@ package br.com.systagramrest.utils;
 public class MyEnconder {
 
 	public String encode(String valor) {
-		return null;
+		return valor;
 	}
 
 	public boolean matches(String password, String senhaCriptografada) {
-		return false;
+		boolean check=false;
+		
+		if (password.equals(senhaCriptografada)) {
+			check = true;
+		}else {
+			check = false;
+		}
+		
+		return check;
 	}
 
 }

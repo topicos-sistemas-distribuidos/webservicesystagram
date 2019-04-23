@@ -1,46 +1,34 @@
-package br.com.systagramrest.repository.entity;
+package br.com.systagramrest.http;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-@Entity
-public class Person extends AbstractModel<Long>{
-	private static final long serialVersionUID = 1L;
-	@JsonBackReference(value="user-person")
-	@OneToOne(fetch = FetchType.LAZY)
+@XmlRootElement
+public class Person{
 	private Users user;
-	@Column(length=255)
 	private String name;
-	@Column(length=255)
 	private String address;
-	@Column(length=255)
 	private String city;
-	@Column(length=255)
 	private String state;
-	@Column(length=8)
 	private String cep;
 	private double latitude=0;
 	private double longitude=0;
+    private Long id;
 
-	@JsonBackReference(value="person-comment")
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+	
 	private List<Comment> comments = new LinkedList<>();
 	
-	@JsonBackReference(value="person-picture")
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Picture> pictures = new LinkedList<>();
 	
-	@JsonBackReference(value="person-post")
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Post> posts = new LinkedList<>();
 
 	public Person() {
